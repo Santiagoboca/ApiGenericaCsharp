@@ -14,4 +14,7 @@ COPY --from=build /app/publish .
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "dotnet ApiGenericaCsharp.dll --urls http://0.0.0.0:${PORT:-10000}"]
+ENV ASPNETCORE_URLS=http://0.0.0.0:10000
+ENV ASPNETCORE_HTTP_PORTS=10000
+
+ENTRYPOINT ["dotnet", "ApiGenericaCsharp.dll"]
